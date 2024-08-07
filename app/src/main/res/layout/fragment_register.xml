@@ -183,7 +183,7 @@
             app:layout_constraintTop_toBottomOf="@id/et_nickname" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_emailVertify"
+            android:id="@+id/btn_moveToEmailVertify"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
