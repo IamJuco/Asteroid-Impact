@@ -16,7 +16,7 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="이메일 인증"
+            android:text="@string/email_vertify_title"
             android:textColor="@color/white"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +24,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_sendEmailCode"
+            android:id="@+id/tv_emailVertifyInformation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="귀하의 이메일로 인증 코드를 발송했습니다. 아래 박스에 인증 코드를 입력해주세요."
+            android:text="@string/email_vertify_information"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,18 +41,18 @@
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_edit_register"
-            android:hint="인증 코드"
+            android:hint="@string/email_vertify_hint"
             android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sendEmailCode" />
+            app:layout_constraintTop_toBottomOf="@id/tv_emailVertifyInformation" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_emailVertify"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="인증 완료"
+            android:text="@string/email_vertify_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_emailCode" />

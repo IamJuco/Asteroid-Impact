@@ -5,4 +5,38 @@
     <string name="nav_home">홈</string>
     <string name="nav_community">커뮤니티</string>
     <string name="nav_my_page">마이페이지</string>
+    
+    <!-- Login -->
+    <string name="login_title">Asteroid Impact</string>
+    <string name="login_login_hint">아이디를 입력해주세요.</string>
+    <string name="login_password_hint">비밀번호를 입력해주세요.</string>
+    <string name="login_login_btn">로그인</string>
+    <string name="login_find_id">아이디 찾기</string>
+    <string name="login_find_password">비밀번호 찾기</string>
+    <string name="login_register_btn">회원가입</string>
+    <string name="login_login_anonymous_btn">비회원으로 시작하기</string>
+
+
+    <!-- Register -->
+    <string name="register_title">회원가입</string>
+    <string name="register_email_title">이메일</string>
+    <string name="register_email_hint">이메일을 입력해주세요.</string>
+    <string name="register_email_warning">이메일 형식이 유효하지 않습니다.</string>
+    <string name="register_password_title">비밀번호</string>
+    <string name="register_password_information">8~16자 이내의 영문+숫자 조합으로 입력해주세요.</string>
+    <string name="register_password_hint">비밀번호를 입력해주세요.</string>
+    <string name="register_password_warning">비밀번호 형식이 유효하지 않습니다.</string>
+    <string name="register_password_check_hint">비밀번호를 다시 한 번 입력해주세요.</string>
+    <string name="register_password_check_warning">비밀번호가 일치하지 않습니다.</string>
+    <string name="register_nickname_title">닉네임</string>
+    <string name="register_nickname_information">2글자 이상 6글자이하의 닉네임으로 설정해 주세요.</string>
+    <string name="register_nickname_hint">닉네임을 입력해주세요.</string>
+    <string name="register_nickname_warning">닉네임 형식이 유효하지 않습니다.</string>
+    <string name="register_move_to_email_vertify">이메일 인증</string>
+
+    <!-- Email Vertify -->
+    <string name="email_vertify_title">이메일 인증</string>
+    <string name="email_vertify_information">귀하의 이메일로 인증 코드를 발송했습니다. 아래 박스에 인증 코드를 입력해주세요.</string>
+    <string name="email_vertify_hint">인증 코드</string>
+    <string name="email_vertify_btn">인증 완료</string>
 </resources>
