@@ -1,4 +1,4 @@
-package com.example.nbc_assignmenttest
+package com.example.nbc_assignmenttest.ui.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.nbc_assignmenttest.R
 import com.example.nbc_assignmenttest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

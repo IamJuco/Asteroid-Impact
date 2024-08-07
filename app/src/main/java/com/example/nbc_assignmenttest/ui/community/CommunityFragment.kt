@@ -1,21 +1,21 @@
-package com.example.nbc_assignmenttest
+package com.example.nbc_assignmenttest.ui.community
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.nbc_assignmenttest.databinding.FragmentHomeBinding
+import com.example.nbc_assignmenttest.databinding.FragmentCommunityBinding
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+class CommunityFragment : Fragment() {
+    private var _binding: FragmentCommunityBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentCommunityBinding.inflate(inflater, container, false)
         return binding.root
     }
 
