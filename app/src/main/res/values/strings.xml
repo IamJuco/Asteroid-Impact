@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">nbc_AssignmentTest</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- navigation -->
     <string name="nav_home">홈</string>
