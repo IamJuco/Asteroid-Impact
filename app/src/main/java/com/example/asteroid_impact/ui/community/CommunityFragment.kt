@@ -1,22 +1,21 @@
-package com.example.nbc_assignmenttest.ui.login
+package com.example.asteroid_impact.ui.community
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.nbc_assignmenttest.R
-import com.example.nbc_assignmenttest.databinding.FragmentLoginBinding
+import com.example.asteroid_impact.databinding.FragmentCommunityBinding
 
-class LoginFragment : Fragment() {
-    private var _binding: FragmentLoginBinding? = null
+class CommunityFragment : Fragment() {
+    private var _binding: FragmentCommunityBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentCommunityBinding.inflate(inflater, container, false)
         return binding.root
     }
 

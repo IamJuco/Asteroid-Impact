@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Nbc_AssignmentTest" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.asteroid_impact" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Nbc_AssignmentTest" parent="Base.Theme.Nbc_AssignmentTest" />
+    <style name="Theme.asteroid_impact" parent="Base.Theme.asteroid_impact" />
 </resources>

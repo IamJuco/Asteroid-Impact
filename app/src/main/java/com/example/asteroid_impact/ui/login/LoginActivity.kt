@@ -1,4 +1,4 @@
-package com.example.nbc_assignmenttest.ui.main
+package com.example.asteroid_impact.ui.login
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,23 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
-import com.example.nbc_assignmenttest.R
-import com.example.nbc_assignmenttest.databinding.ActivityMainBinding
+import com.example.asteroid_impact.databinding.ActivityLoginBinding
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
+class LoginActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
 
         uiSetting()
-        bottomNavigation()
 
     }
 
@@ -32,11 +27,5 @@ class MainActivity : AppCompatActivity() {
             view.updatePadding(insets.left, insets.top, insets.right, insets.bottom)
             WindowInsetsCompat.CONSUMED
         }
-    }
-
-    private fun bottomNavigation() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_hostFragmentContainer) as NavHostFragment
-        val navController = navHostFragment.navController
-        binding.bottomNavigationView.setupWithNavController(navController)
     }
 }

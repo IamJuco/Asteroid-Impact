@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nbc_assignmenttest"
+    namespace = "com.example.asteroid_impact"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.nbc_assignmenttest"
+        applicationId = "com.example.asteroid_impact"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">nbc_AssignmentTest</string>
+    <string name="app_name">asteroid_impact</string>
 
     <!-- navigation -->
     <string name="nav_home">홈</string>

@@ -1,4 +1,4 @@
-package com.example.nbc_assignmenttest
+package com.example.asteroid_impact
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
