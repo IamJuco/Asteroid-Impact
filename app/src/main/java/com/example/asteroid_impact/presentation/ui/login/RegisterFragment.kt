@@ -40,6 +40,10 @@ class RegisterFragment : Fragment() {
         viewModel.registerResult.observe(viewLifecycleOwner) { result ->
             result.onSuccess {
                 Snackbar.make(binding.root, "회원가입 성공", Snackbar.LENGTH_SHORT).show()
+                viewModel.sendEmailVerification()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.frameContainer, EmailVertifyFragment())
+                    .commit()
             }.onFailure {
                 Snackbar.make(binding.root, "회원가입 실패: ${it.message}", Snackbar.LENGTH_SHORT).show()
             }
@@ -65,9 +69,6 @@ class RegisterFragment : Fragment() {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
             viewModel.registerUser(email, password)
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frameContainer, EmailVertifyFragment())
-                .commit()
         }
     }
 
@@ -77,7 +78,8 @@ class RegisterFragment : Fragment() {
         val isPasswordCheckValid = checkPasswordAgain()
         val isNicknameValid = checkNickname()
 
-        binding.btnMoveToEmailVertify.isEnabled = isEmailValid && isPasswordValid && isPasswordCheckValid && isNicknameValid
+        binding.btnMoveToEmailVertify.isEnabled =
+            isEmailValid && isPasswordValid && isPasswordCheckValid && isNicknameValid
     }
 
     private fun checkEmail(): Boolean {
