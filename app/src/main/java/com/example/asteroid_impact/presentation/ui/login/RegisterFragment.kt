@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.R
+import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.regex.Pattern
@@ -17,7 +18,9 @@ class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SharedViewModel by activityViewModels()
+    private val viewModel: SharedViewModel by activityViewModels {
+        SharedViewModelFactory(FirebaseAuthRepositoryImpl())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,9 +62,9 @@ class RegisterFragment : Fragment() {
         binding.etNickname.addTextChangedListener(textWatcher)
 
         binding.btnMoveToEmailVertify.setOnClickListener {
-//            val email = binding.etEmail.text.toString()
-//            val password = binding.etPassword.text.toString()
-//            viewModel.registerUser(email, password)
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            viewModel.registerUser(email, password)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.frameContainer, EmailVertifyFragment())
                 .commit()
