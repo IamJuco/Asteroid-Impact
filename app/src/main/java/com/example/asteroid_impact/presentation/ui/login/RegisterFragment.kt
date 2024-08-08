@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
+import androidx.fragment.app.activityViewModels
+import com.example.asteroid_impact.R
 import com.example.asteroid_impact.databinding.FragmentRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.regex.Pattern
@@ -17,9 +17,7 @@ class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: RegisterViewModel by viewModels {
-        RegisterViewModelFactory(FirebaseAuthRepositoryImpl())
-    }
+    private val viewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +46,9 @@ class RegisterFragment : Fragment() {
     private fun setUpCheckRegister() {
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                checkEmail()
-                checkPassword()
-                checkPasswordAgain()
-                checkNickname()
+                updateRegisterButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
@@ -63,35 +59,71 @@ class RegisterFragment : Fragment() {
         binding.etNickname.addTextChangedListener(textWatcher)
 
         binding.btnMoveToEmailVertify.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
-            viewModel.registerUser(email, password)
+//            val email = binding.etEmail.text.toString()
+//            val password = binding.etPassword.text.toString()
+//            viewModel.registerUser(email, password)
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.frameContainer, EmailVertifyFragment())
+                .commit()
         }
     }
 
-    private fun checkEmail() {
+    private fun updateRegisterButtonState() {
+        val isEmailValid = checkEmail()
+        val isPasswordValid = checkPassword()
+        val isPasswordCheckValid = checkPasswordAgain()
+        val isNicknameValid = checkNickname()
+
+        binding.btnMoveToEmailVertify.isEnabled = isEmailValid && isPasswordValid && isPasswordCheckValid && isNicknameValid
+    }
+
+    private fun checkEmail(): Boolean {
         val email = binding.etEmail.text.toString()
         val emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
         val emailPatternCheck = Pattern.matches(emailPattern, email)
-        binding.tvEmailWarning.visibility = if (email.isNotEmpty() && !emailPatternCheck) View.VISIBLE else View.INVISIBLE
+        return if (email.isNotEmpty() && !emailPatternCheck) {
+            binding.tvEmailWarning.visibility = View.VISIBLE
+            false
+        } else {
+            binding.tvEmailWarning.visibility = View.INVISIBLE
+            true
+        }
     }
 
-    private fun checkPassword() {
+    private fun checkPassword(): Boolean {
         val password = binding.etPassword.text.toString()
         val passwordPattern = "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,16}$"
         val passwordPatternCheck = Pattern.matches(passwordPattern, password)
-        binding.tvPasswordWarning.visibility = if (password.isNotEmpty() && !passwordPatternCheck) View.VISIBLE else View.INVISIBLE
+        return if (password.isNotEmpty() && !passwordPatternCheck) {
+            binding.tvPasswordWarning.visibility = View.VISIBLE
+            false
+        } else {
+            binding.tvPasswordWarning.visibility = View.INVISIBLE
+            true
+        }
     }
 
-    private fun checkPasswordAgain() {
+    private fun checkPasswordAgain(): Boolean {
         val password = binding.etPassword.text.toString()
         val passwordCheck = binding.etPasswordCheck.text.toString()
-        binding.tvPasswordCheckWarning.visibility = if (passwordCheck.isNotEmpty() && password != passwordCheck) View.VISIBLE else View.INVISIBLE
+        return if (passwordCheck.isNotEmpty() && password != passwordCheck) {
+            binding.tvPasswordCheckWarning.visibility = View.VISIBLE
+            false
+        } else {
+            binding.tvPasswordCheckWarning.visibility = View.INVISIBLE
+            true
+        }
     }
 
-    private fun checkNickname() {
+    private fun checkNickname(): Boolean {
         val nickname = binding.etNickname.text.toString()
-        binding.tvNicknameWarning.visibility = if (nickname.isNotEmpty() && (nickname.length !in 2..5)) View.VISIBLE else View.INVISIBLE
+        return if (nickname.isNotEmpty() && (nickname.length !in 2..6)) {
+            binding.tvNicknameWarning.visibility = View.VISIBLE
+            false
+        } else {
+            binding.tvNicknameWarning.visibility = View.INVISIBLE
+            true
+        }
     }
 
     override fun onDestroyView() {

@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
 import kotlinx.coroutines.launch
 
-class RegisterViewModel(private val authRepository: FirebaseAuthRepository) : ViewModel() {
+class SharedViewModel(private val authRepository: FirebaseAuthRepository) : ViewModel() {
 
     private val _registerResult = MutableLiveData<Result<Unit>>()
     val registerResult: LiveData<Result<Unit>> = _registerResult
@@ -26,8 +26,8 @@ class RegisterViewModelFactory(
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-            return RegisterViewModel(authRepository) as T
+        if (modelClass.isAssignableFrom(SharedViewModel::class.java)) {
+            return SharedViewModel(authRepository) as T
         }
         throw IllegalArgumentException("뷰모델 클래스가 없음")
     }
