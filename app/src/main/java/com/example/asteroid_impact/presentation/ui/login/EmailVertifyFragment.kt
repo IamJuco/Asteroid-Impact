@@ -1,12 +1,14 @@
 package com.example.asteroid_impact.presentation.ui.login
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.databinding.FragmentEmailVertifyBinding
+import com.google.android.material.snackbar.Snackbar
 
 class EmailVertifyFragment : Fragment() {
     private var _binding: FragmentEmailVertifyBinding? = null
@@ -20,6 +22,24 @@ class EmailVertifyFragment : Fragment() {
     ): View {
         _binding = FragmentEmailVertifyBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        checkEmailVerify()
+    }
+
+    private fun checkEmailVerify() {
+        binding.btnEmailVertify.setOnClickListener {
+            sharedViewModel.checkEmailVerification { isVerified ->
+                if (isVerified) {
+                    Snackbar.make(binding.root, "이메일 인증 완료", Snackbar.LENGTH_SHORT).show()
+                } else {
+                    Snackbar.make(binding.root, "이메일 인증이 아직 완료되지 않았습니다.", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
