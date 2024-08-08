@@ -16,15 +16,10 @@ object RetrofitClient {
             .build()
     }
 
-// TODO ApiService 인터페이스 만들것 ( NeoFeedService, NeoLookupService )
-
-    val getNeoFeedService: NeoFeedService by lazy {
-        retrofit.create(NeoFeedService::class.java)
+    val getNasaApiService: NasaApiService by lazy {
+        retrofit.create(NasaApiService::class.java)
     }
 
-    val getNeoLookupService: NeoLookupService by lazy {
-        retrofit.create(NeoLookupService::class.java)
-    }
 
     private fun createOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
