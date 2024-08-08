@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import com.example.asteroid_impact.R
 import com.example.asteroid_impact.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -18,6 +19,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         uiSetting()
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frameContainer, LoginFragment())
+                .commit()
+        }
 
     }
 
