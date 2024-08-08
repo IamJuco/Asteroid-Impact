@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.nbc_assignmenttest.ui.home.HomeFragment"
+        android:name="com.example.asteroid_impact.presentation.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/communityFragment"
-        android:name="com.example.nbc_assignmenttest.ui.community.CommunityFragment"
+        android:name="com.example.asteroid_impact.presentation.ui.community.CommunityFragment"
         android:label="fragment_community"
         tools:layout="@layout/fragment_community" />
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.example.nbc_assignmenttest.ui.mypage.MyPageFragment"
+        android:name="com.example.asteroid_impact.presentation.ui.mypage.MyPageFragment"
         android:label="fragment_my_page"
         tools:layout="@layout/fragment_my_page" />
 </navigation>
