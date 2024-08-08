@@ -1,7 +1,9 @@
 package com.example.asteroid_impact.data.repository
 
+import android.util.Log
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
 
 class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
@@ -30,5 +32,9 @@ class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
         } else {
             Result.failure(IllegalStateException("유저가 로그인 되지 않은 상태"))
         }
+    }
+
+    override fun getCurrentUser(): FirebaseUser? {
+        return firebaseAuth.currentUser
     }
 }
