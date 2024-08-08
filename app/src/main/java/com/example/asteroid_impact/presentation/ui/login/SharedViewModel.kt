@@ -21,7 +21,7 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
     }
 }
 
-class RegisterViewModelFactory(
+class SharedViewModelFactory(
     private val authRepository: FirebaseAuthRepository
 ) : ViewModelProvider.Factory {
 
