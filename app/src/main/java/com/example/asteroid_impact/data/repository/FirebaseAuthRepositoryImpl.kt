@@ -17,4 +17,18 @@ class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
             Result.failure(e)
         }
     }
+
+    override suspend fun sendEmailVerification(): Result<Unit> {
+        val user = firebaseAuth.currentUser
+        return if (user != null) {
+            try {
+                user.sendEmailVerification().await()
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        } else {
+            Result.failure(IllegalStateException("유저가 로그인 되지 않은 상태"))
+        }
+    }
 }
