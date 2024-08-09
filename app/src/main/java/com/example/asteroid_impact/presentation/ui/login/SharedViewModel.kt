@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.Constants
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -25,7 +26,17 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
     private val _email = MutableLiveData<String>()
     val email: MutableLiveData<String> get() = _email
 
+    private val _loginResult = MutableLiveData<Result<FirebaseUser>>()
+    val loginResult: LiveData<Result<FirebaseUser>> get() = _loginResult
+
     private var timerJob: Job? = null
+
+    fun loginUser(email: String, password: String) {
+        viewModelScope.launch{
+            val result = authRepository.signInWithEmail(email, password)
+            _loginResult.value = result
+        }
+    }
 
     fun registerUser(password: String) {
         val email = _email.value
