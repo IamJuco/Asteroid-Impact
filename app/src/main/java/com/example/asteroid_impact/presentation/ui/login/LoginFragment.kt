@@ -27,7 +27,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnRegister.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frameContainer, RegisterFragment())
+                .replace(R.id.frameContainer, RegisterEmailFragment())
                 .addToBackStack(null)
                 .commit()
         }

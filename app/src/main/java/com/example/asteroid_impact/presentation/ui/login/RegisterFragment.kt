@@ -61,40 +61,39 @@ class RegisterFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
 
-        binding.etEmail.addTextChangedListener(textWatcher)
+//        binding.etEmail.addTextChangedListener(textWatcher)
         binding.etPassword.addTextChangedListener(textWatcher)
         binding.etPasswordCheck.addTextChangedListener(textWatcher)
         binding.etNickname.addTextChangedListener(textWatcher)
 
         binding.btnMoveToEmailVertify.setOnClickListener {
-            val email = binding.etEmail.text.toString()
+//            val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
-            viewModel.registerUser(email, password)
+//            viewModel.registerUser(email, password)
         }
     }
 
     private fun updateRegisterButtonState() {
-        val isEmailValid = checkEmail()
         val isPasswordValid = checkPassword()
         val isPasswordCheckValid = checkPasswordAgain()
         val isNicknameValid = checkNickname()
 
         binding.btnMoveToEmailVertify.isEnabled =
-            isEmailValid && isPasswordValid && isPasswordCheckValid && isNicknameValid
+            isPasswordValid && isPasswordCheckValid && isNicknameValid
     }
 
-    private fun checkEmail(): Boolean {
-        val email = binding.etEmail.text.toString()
-        val emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
-        val emailPatternCheck = Pattern.matches(emailPattern, email)
-        return if (email.isNotEmpty() && !emailPatternCheck) {
-            binding.tvEmailWarning.visibility = View.VISIBLE
-            false
-        } else {
-            binding.tvEmailWarning.visibility = View.INVISIBLE
-            true
-        }
-    }
+//    private fun checkEmail(): Boolean {
+//        val email = binding.etEmail.text.toString()
+//        val emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+//        val emailPatternCheck = Pattern.matches(emailPattern, email)
+//        return if (email.isNotEmpty() && !emailPatternCheck) {
+//            binding.tvEmailWarning.visibility = View.VISIBLE
+//            false
+//        } else {
+//            binding.tvEmailWarning.visibility = View.INVISIBLE
+//            true
+//        }
+//    }
 
     private fun checkPassword(): Boolean {
         val password = binding.etPassword.text.toString()

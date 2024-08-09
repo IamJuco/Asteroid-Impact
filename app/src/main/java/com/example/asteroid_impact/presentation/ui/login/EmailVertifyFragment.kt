@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.asteroid_impact.R
 import com.example.asteroid_impact.databinding.FragmentEmailVertifyBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -35,6 +36,10 @@ class EmailVertifyFragment : Fragment() {
             sharedViewModel.checkEmailVerification { isVerified ->
                 if (isVerified) {
                     Snackbar.make(binding.root, "이메일 인증 완료", Snackbar.LENGTH_SHORT).show()
+                    //TODO 이 시점에 계정 삭제 시킬것
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameContainer, RegisterFragment())
+                        .commit()
                 } else {
                     Snackbar.make(binding.root, "이메일 인증이 아직 완료되지 않았습니다.", Snackbar.LENGTH_SHORT)
                         .show()
@@ -46,7 +51,7 @@ class EmailVertifyFragment : Fragment() {
     private fun setUpListener() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
-            //TODO 로그아웃 시켜야함 ( 회원가입으로갈때 회원가입 처리가 되어있음 )
+            //TODO 계정삭제 시켜야함 ( 회원가입으로갈때 회원가입 처리가 되어있음 )
         }
     }
 
