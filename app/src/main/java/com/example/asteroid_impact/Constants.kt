@@ -5,4 +5,6 @@ object Constants {
     const val NASA_BASE_URL = "https://api.nasa.gov/"
     // Nasa Api Key
     const val NASA_API_KEY  = "hQb8FEamBoAD0gLuzK4tiCWtjowrmRELN3oYb2Br"
+    // User Temp Password
+    const val USER_TEMP_PASSWORD = "f^k343FFGD@!$54"
 }
