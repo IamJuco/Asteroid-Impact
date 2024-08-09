@@ -28,6 +28,7 @@ class LoginFragment : Fragment() {
         binding.btnRegister.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.frameContainer, RegisterFragment())
+                .addToBackStack(null)
                 .commit()
         }
     }

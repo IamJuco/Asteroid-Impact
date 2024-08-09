@@ -34,6 +34,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpCheckRegister()
         setUpObserver()
+        setUpListener()
     }
 
     private fun setUpObserver() {
@@ -128,6 +129,12 @@ class RegisterFragment : Fragment() {
         } else {
             binding.tvNicknameWarning.visibility = View.INVISIBLE
             true
+        }
+    }
+
+    private fun setUpListener() {
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 

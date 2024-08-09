@@ -27,6 +27,7 @@ class EmailVertifyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkEmailVerify()
+        setUpListener()
     }
 
     private fun checkEmailVerify() {
@@ -39,6 +40,13 @@ class EmailVertifyFragment : Fragment() {
                         .show()
                 }
             }
+        }
+    }
+
+    private fun setUpListener() {
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+            //TODO 로그아웃 시켜야함 ( 회원가입으로갈때 회원가입 처리가 되어있음 )
         }
     }
 
