@@ -59,6 +59,15 @@ class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
         }
     }
 
+    override suspend fun signInWithEmail(email: String, password: String): Result<FirebaseUser> {
+        return try {
+            val auth = firebaseAuth.signInWithEmailAndPassword(email, password).await()
+            Result.success(auth.user!!)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     override fun getCurrentUser(): FirebaseUser? {
         return firebaseAuth.currentUser
     }
