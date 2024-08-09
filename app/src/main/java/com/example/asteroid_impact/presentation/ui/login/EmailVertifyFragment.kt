@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.Constants
 import com.example.asteroid_impact.R
+import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentEmailVertifyBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -16,7 +17,9 @@ class EmailVertifyFragment : Fragment() {
     private var _binding: FragmentEmailVertifyBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SharedViewModel by activityViewModels()
+    private val viewModel: SharedViewModel by activityViewModels {
+        SharedViewModelFactory(FirebaseAuthRepositoryImpl())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,8 +64,9 @@ class EmailVertifyFragment : Fragment() {
 
     private fun setUpListener() {
         binding.btnBack.setOnClickListener {
+            viewModel.accountDelete()
+            viewModel.clearRegisterResult()
             requireActivity().onBackPressedDispatcher.onBackPressed()
-            //TODO 계정삭제 시켜야함 ( 회원가입으로갈때 회원가입 처리가 되어있음 )
         }
     }
 

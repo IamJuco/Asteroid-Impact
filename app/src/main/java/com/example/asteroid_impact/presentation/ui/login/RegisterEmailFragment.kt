@@ -41,13 +41,14 @@ class RegisterEmailFragment : Fragment() {
 
     private fun setUpObserver() {
         viewModel.registerResult.observe(viewLifecycleOwner) { result ->
-            result.onSuccess {
+            result?.onSuccess {
                 Snackbar.make(binding.root, "임시 회원가입 성공", Snackbar.LENGTH_SHORT).show()
                 viewModel.sendEmailVerification()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.frameContainer, EmailVertifyFragment())
                     .commit()
-            }.onFailure {
+
+            }?.onFailure {
                 Snackbar.make(binding.root, "임시 회원가입 실패: ${it.message}", Snackbar.LENGTH_SHORT).show()
             }
         }
