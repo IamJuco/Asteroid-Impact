@@ -45,18 +45,27 @@ class EmailVertifyFragment : Fragment() {
                     val password = Constants.USER_TEMP_PASSWORD
 
                     //TODO email null check 해봐야할듯
-                    viewModel.deleteAccountAndReAuthentication(email.orEmpty(), password) { result ->
+                    viewModel.deleteAccountAndReAuthentication(
+                        email.orEmpty(),
+                        password
+                    ) { result ->
                         result.onSuccess {
+                            viewModel.clearRegisterResult()
                             requireActivity().supportFragmentManager.beginTransaction()
                                 .replace(R.id.frameContainer, RegisterFragment())
                                 .commit()
                         }.onFailure {
-                            Snackbar.make(binding.root, "계정 삭제 실패: ${it.message}", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(
+                                binding.root,
+                                "계정 삭제 실패: ${it.message}",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
                 } else {
-                    Snackbar.make(binding.root, "이메일 인증이 아직 완료되지 않았습니다.", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "이메일 인증이 아직 완료되지 않았습니다.", Snackbar.LENGTH_SHORT)
+                        .show()
                 }
             }
         }

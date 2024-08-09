@@ -15,19 +15,36 @@ import kotlinx.coroutines.tasks.await
 
 class SharedViewModel(private val authRepository: FirebaseAuthRepository) : ViewModel() {
 
-    private val _registerResult = MutableLiveData<Result<Unit>?>()
+    private val _registerResult = MutableLiveData<Result<Unit>>()
     val registerResult: LiveData<Result<Unit>?> = _registerResult
 
-    private val _email = MutableLiveData<String?>()
-    val email: MutableLiveData<String?> get() = _email
+    private val _registerResultForEmailVerification = MutableLiveData<Result<Unit>?>()
+    val registerResultForEmailVerification: LiveData<Result<Unit>?> =
+        _registerResultForEmailVerification
+
+    private val _email = MutableLiveData<String>()
+    val email: MutableLiveData<String> get() = _email
 
     private var timerJob: Job? = null
 
-    fun registerUser(email: String, password: String) {
+    fun registerUser(password: String) {
+        val email = _email.value
+        if (email != null) {
+            viewModelScope.launch {
+                val result = authRepository.registerWithEmail(email, password)
+                _registerResult.value = result
+                if (result.isFailure) {
+                    Log.d("0526registerUser", "회원가입 실패 ${result.exceptionOrNull()?.message}")
+                }
+            }
+        }
+    }
+
+    fun registerUserForEmailVerification(email: String, password: String) {
         _email.value = email
         viewModelScope.launch {
             val result = authRepository.registerWithEmail(email, password)
-            _registerResult.value = result
+            _registerResultForEmailVerification.value = result
 
             if (result.isSuccess) {
                 emailVerificationTimer(email, password)
@@ -39,7 +56,10 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
         viewModelScope.launch {
             val result = authRepository.sendEmailVerification()
             if (result.isFailure) {
-                Log.d("0526sendEmailVerification", "인증 코드 보내기 실패 ${result.exceptionOrNull()?.message}")
+                Log.d(
+                    "0526sendEmailVerification",
+                    "인증 코드 보내기 실패 ${result.exceptionOrNull()?.message}"
+                )
             } else {
                 authRepository.sendEmailVerification()
             }
@@ -47,7 +67,7 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
     }
 
     fun clearRegisterResult() {
-        _registerResult.value = null
+        _registerResultForEmailVerification.value = null
     }
 
     fun checkEmailVerification(onResult: (Boolean) -> Unit) {
@@ -71,7 +91,11 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
         }
     }
 
-    fun deleteAccountAndReAuthentication(email: String, password: String, onResult: (Result<Unit>) -> Unit) {
+    fun deleteAccountAndReAuthentication(
+        email: String,
+        password: String,
+        onResult: (Result<Unit>) -> Unit
+    ) {
         viewModelScope.launch {
             val reAuthResult = authRepository.reAuthenticateUser(email, password)
             if (reAuthResult.isSuccess) {
@@ -100,7 +124,10 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
                 if (reAuthResult.isSuccess) {
                     val deleteResult = authRepository.deleteAccount(user)
                     if (deleteResult.isFailure) {
-                        Log.d("0526emailVerificationTimer", " 계정 삭제 실패 ${deleteResult.exceptionOrNull()?.message}")
+                        Log.d(
+                            "0526emailVerificationTimer",
+                            " 계정 삭제 실패 ${deleteResult.exceptionOrNull()?.message}"
+                        )
                     }
                 } else {
                     // 재인증 실패
@@ -121,11 +148,17 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
                     if (user != null) {
                         val deleteResult = authRepository.deleteAccount(user)
                         if (deleteResult.isFailure) {
-                            Log.e("0526accountDeleteForOnCleared", "계정 삭제 실패: ${deleteResult.exceptionOrNull()?.message}")
+                            Log.e(
+                                "0526accountDeleteForOnCleared",
+                                "계정 삭제 실패: ${deleteResult.exceptionOrNull()?.message}"
+                            )
                         }
                     }
                 } else {
-                    Log.e("0526accountDeleteForOnCleared", "재인증 실패: ${reAuthResult.exceptionOrNull()?.message}")
+                    Log.e(
+                        "0526accountDeleteForOnCleared",
+                        "재인증 실패: ${reAuthResult.exceptionOrNull()?.message}"
+                    )
                 }
             }
         }

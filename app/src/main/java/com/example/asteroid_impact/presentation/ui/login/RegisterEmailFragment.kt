@@ -40,7 +40,7 @@ class RegisterEmailFragment : Fragment() {
     }
 
     private fun setUpObserver() {
-        viewModel.registerResult.observe(viewLifecycleOwner) { result ->
+        viewModel.registerResultForEmailVerification.observe(viewLifecycleOwner) { result ->
             result?.onSuccess {
                 Snackbar.make(binding.root, "임시 회원가입 성공", Snackbar.LENGTH_SHORT).show()
                 viewModel.sendEmailVerification()
@@ -49,7 +49,8 @@ class RegisterEmailFragment : Fragment() {
                     .commit()
 
             }?.onFailure {
-                Snackbar.make(binding.root, "임시 회원가입 실패: ${it.message}", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "임시 회원가입 실패: ${it.message}", Snackbar.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -69,7 +70,7 @@ class RegisterEmailFragment : Fragment() {
             val email = binding.etEmail.text.toString()
             val password = Constants.USER_TEMP_PASSWORD
 
-            viewModel.registerUser(email, password)
+            viewModel.registerUserForEmailVerification(email, password)
         }
     }
 
