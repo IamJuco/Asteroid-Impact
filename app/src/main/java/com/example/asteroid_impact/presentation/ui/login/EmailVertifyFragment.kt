@@ -48,7 +48,7 @@ class EmailVertifyFragment : Fragment() {
                     viewModel.deleteAccountAndReAuthentication(email.orEmpty(), password) { result ->
                         result.onSuccess {
                             requireActivity().supportFragmentManager.beginTransaction()
-                                .replace(R.id.frameContainer, LoginFragment())
+                                .replace(R.id.frameContainer, RegisterFragment())
                                 .commit()
                         }.onFailure {
                             Snackbar.make(binding.root, "계정 삭제 실패: ${it.message}", Snackbar.LENGTH_SHORT).show()

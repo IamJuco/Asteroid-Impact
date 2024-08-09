@@ -66,7 +66,7 @@ class RegisterFragment : Fragment() {
         binding.etPasswordCheck.addTextChangedListener(textWatcher)
         binding.etNickname.addTextChangedListener(textWatcher)
 
-        binding.btnMoveToEmailVertify.setOnClickListener {
+        binding.btnRegisterSuccess.setOnClickListener {
 //            val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 //            viewModel.registerUser(email, password)
@@ -78,7 +78,7 @@ class RegisterFragment : Fragment() {
         val isPasswordCheckValid = checkPasswordAgain()
         val isNicknameValid = checkNickname()
 
-        binding.btnMoveToEmailVertify.isEnabled =
+        binding.btnRegisterSuccess.isEnabled =
             isPasswordValid && isPasswordCheckValid && isNicknameValid
     }
 

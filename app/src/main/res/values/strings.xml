@@ -32,7 +32,7 @@
     <string name="register_nickname_information">2글자 이상 6글자이하의 닉네임으로 설정해 주세요.</string>
     <string name="register_nickname_hint">닉네임을 입력해주세요.</string>
     <string name="register_nickname_warning">닉네임 형식이 유효하지 않습니다.</string>
-    <string name="register_move_to_email_vertify">이메일 인증</string>
+    <string name="register_success_btn">회원가입 완료</string>
 
     <!-- Email Vertify -->
     <string name="email_vertify_title">이메일 인증</string>
