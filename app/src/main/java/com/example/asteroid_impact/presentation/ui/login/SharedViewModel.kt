@@ -23,25 +23,22 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
     private var timerJob: Job? = null
 
     fun registerUser(email: String, password: String) {
+        _email.value = email
         viewModelScope.launch {
             val result = authRepository.registerWithEmail(email, password)
             _registerResult.value = result
 
             if (result.isSuccess) {
-                emailVerificationTimer()
+                emailVerificationTimer(email, password)
             }
         }
-    }
-
-    fun saveEmailForVerification(email: String) {
-        _email.value = email
     }
 
     fun sendEmailVerification() {
         viewModelScope.launch {
             val result = authRepository.sendEmailVerification()
             if (result.isFailure) {
-                //TODO 인증 실패시 처리 할것 ( 텍스트나 UI 추가할것 )
+                Log.d("sendEmailVerification", "인증 코드 보내기 실패 ${result.exceptionOrNull()?.message}")
             } else {
                 authRepository.sendEmailVerification()
             }
@@ -86,14 +83,23 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
         }
     }
 
-    private fun emailVerificationTimer() {
+    private fun emailVerificationTimer(email: String, password: String) {
         timerJob?.cancel()
 
         timerJob = viewModelScope.launch {
-            delay(5 * 60 * 1000)
+            delay(1 * 60 * 1000)  // 1분 대기
+
             val user = authRepository.getCurrentUser()
             if (user != null && !user.isEmailVerified) {
-                authRepository.deleteAccount(user)
+                val reAuthResult = authRepository.reAuthenticateUser(email, password)
+                if (reAuthResult.isSuccess) {
+                    val deleteResult = authRepository.deleteAccount(user)
+                    if (deleteResult.isFailure) {
+                        Log.d("emailVerificationTimer", " 계정 삭제 실패 ${deleteResult.exceptionOrNull()?.message}")
+                    }
+                } else {
+                    // 재인증 실패
+                }
             }
         }
     }
