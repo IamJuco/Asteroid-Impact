@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.asteroid_impact.Constants
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.databinding.FragmentEmailVertifyBinding
 import com.google.android.material.snackbar.Snackbar
@@ -15,7 +16,7 @@ class EmailVertifyFragment : Fragment() {
     private var _binding: FragmentEmailVertifyBinding? = null
     private val binding get() = _binding!!
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val viewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,16 +34,26 @@ class EmailVertifyFragment : Fragment() {
 
     private fun checkEmailVerify() {
         binding.btnEmailVertify.setOnClickListener {
-            sharedViewModel.checkEmailVerification { isVerified ->
+            viewModel.checkEmailVerification { isVerified ->
                 if (isVerified) {
                     Snackbar.make(binding.root, "이메일 인증 완료", Snackbar.LENGTH_SHORT).show()
-                    //TODO 이 시점에 계정 삭제 시킬것
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.frameContainer, RegisterFragment())
-                        .commit()
+
+                    val email = viewModel.email.value
+                    val password = Constants.USER_TEMP_PASSWORD
+
+                    //TODO email null check 해봐야할듯
+                    viewModel.deleteAccountAndReAuthentication(email.orEmpty(), password) { result ->
+                        result.onSuccess {
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.frameContainer, LoginFragment())
+                                .commit()
+                        }.onFailure {
+                            Snackbar.make(binding.root, "계정 삭제 실패: ${it.message}", Snackbar.LENGTH_SHORT).show()
+                        }
+                    }
+
                 } else {
-                    Snackbar.make(binding.root, "이메일 인증이 아직 완료되지 않았습니다.", Snackbar.LENGTH_SHORT)
-                        .show()
+                    Snackbar.make(binding.root, "이메일 인증이 아직 완료되지 않았습니다.", Snackbar.LENGTH_SHORT).show()
                 }
             }
         }

@@ -17,6 +17,9 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
     private val _registerResult = MutableLiveData<Result<Unit>>()
     val registerResult: LiveData<Result<Unit>> = _registerResult
 
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> get() = _email
+
     private var timerJob: Job? = null
 
     fun registerUser(email: String, password: String) {
@@ -28,6 +31,10 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
                 emailVerificationTimer()
             }
         }
+    }
+
+    fun saveEmailForVerification(email: String) {
+        _email.value = email
     }
 
     fun sendEmailVerification() {
@@ -58,6 +65,23 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
 
             if (isVerified) {
                 timerJob?.cancel()
+            }
+        }
+    }
+
+    fun deleteAccountAndReAuthentication(email: String, password: String, onResult: (Result<Unit>) -> Unit) {
+        viewModelScope.launch {
+            val reAuthResult = authRepository.reAuthenticateUser(email, password)
+            if (reAuthResult.isSuccess) {
+                val user = authRepository.getCurrentUser()
+                if (user != null) {
+                    val deleteResult = authRepository.deleteAccount(user)
+                    onResult(deleteResult)
+                } else {
+                    onResult(Result.failure(IllegalStateException("유저가 존재하지 않음")))
+                }
+            } else {
+                onResult(reAuthResult)
             }
         }
     }

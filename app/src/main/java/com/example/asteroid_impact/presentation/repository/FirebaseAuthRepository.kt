@@ -6,6 +6,7 @@ interface FirebaseAuthRepository {
     suspend fun registerWithEmail(email: String, password: String): Result<Unit>
     suspend fun sendEmailVerification(): Result<Unit>
     suspend fun deleteAccount(user: FirebaseUser): Result<Unit>
+    suspend fun reAuthenticateUser(email: String, password: String): Result<Unit>
     fun getCurrentUser(): FirebaseUser?
     fun signOut()
 }

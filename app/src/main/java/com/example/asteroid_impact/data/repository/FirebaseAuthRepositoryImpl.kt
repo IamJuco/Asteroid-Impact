@@ -2,6 +2,7 @@ package com.example.asteroid_impact.data.repository
 
 import android.util.Log
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
@@ -40,6 +41,21 @@ class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
             Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
+        }
+    }
+
+    override suspend fun reAuthenticateUser(email: String, password: String): Result<Unit> {
+        val user = firebaseAuth.currentUser
+        return if (user != null) {
+            val credential = EmailAuthProvider.getCredential(email, password)
+            try {
+                user.reauthenticate(credential).await()
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        } else {
+            Result.failure(IllegalStateException("유저가 로그인 되지 않은 상태"))
         }
     }
 

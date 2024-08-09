@@ -67,6 +67,8 @@ class RegisterEmailFragment : Fragment() {
         binding.btnSendEmailVerifyCode.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = Constants.USER_TEMP_PASSWORD
+
+            viewModel.saveEmailForVerification(email)
             viewModel.registerUser(email, password)
         }
     }
