@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -15,10 +17,16 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
     private val _registerResult = MutableLiveData<Result<Unit>>()
     val registerResult: LiveData<Result<Unit>> = _registerResult
 
+    private var timerJob: Job? = null
+
     fun registerUser(email: String, password: String) {
         viewModelScope.launch {
             val result = authRepository.registerWithEmail(email, password)
             _registerResult.value = result
+
+            if (result.isSuccess) {
+                emailVerificationTimer()
+            }
         }
     }
 
@@ -47,6 +55,22 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
 
             val isVerified = user?.isEmailVerified ?: false
             onResult(isVerified)
+
+            if (isVerified) {
+                timerJob?.cancel()
+            }
+        }
+    }
+
+    private fun emailVerificationTimer() {
+        timerJob?.cancel()
+
+        timerJob = viewModelScope.launch {
+            delay(5 * 60 * 1000)
+            val user = authRepository.getCurrentUser()
+            if (user != null && !user.isEmailVerified) {
+                authRepository.deleteAccount(user)
+            }
         }
     }
 }
