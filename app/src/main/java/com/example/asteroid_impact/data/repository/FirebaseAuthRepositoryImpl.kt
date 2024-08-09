@@ -34,6 +34,15 @@ class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
         }
     }
 
+    override suspend fun deleteAccount(user: FirebaseUser): Result<Unit> {
+        return try {
+            user.delete().await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     override fun getCurrentUser(): FirebaseUser? {
         return firebaseAuth.currentUser
     }
