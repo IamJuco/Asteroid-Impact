@@ -5,6 +5,8 @@ import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepositor
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
@@ -63,6 +65,15 @@ class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
         return try {
             val auth = firebaseAuth.signInWithEmailAndPassword(email, password).await()
             Result.success(auth.user!!)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun changePassword(email: String): Result<Unit> {
+        return try {
+            Firebase.auth.sendPasswordResetEmail(email).await()
+            Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
         }
