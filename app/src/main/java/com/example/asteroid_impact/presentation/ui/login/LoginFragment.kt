@@ -67,6 +67,11 @@ class LoginFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
+        binding.btnAnonymousLogin.setOnClickListener {
+            requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
+            requireActivity().finish()
+        }
     }
 
     override fun onDestroyView() {
