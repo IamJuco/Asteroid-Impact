@@ -3,6 +3,7 @@ package com.example.asteroid_impact.presentation.ui.login
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,16 +43,17 @@ class ChangePasswordFragment : Fragment() {
         viewModel.sendVerifyCodeForChangePassword.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 if (result.isSuccess) {
-                    Snackbar.make(binding.root, "비밀번호 재설정 이메일이 발송되었습니다.", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "비밀번호 재설정 이메일이 발송되었습니다.", Snackbar.LENGTH_SHORT)
+                        .show()
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.frameContainer, ChangePasswordVerifyFragment())
                         .commit()
                 } else {
-                    Snackbar.make(
-                        binding.root,
-                        "비밀번호 재설정 실패: ${result.exceptionOrNull()?.message}",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    Snackbar.make(binding.root, "비밀번호 재설정에 실패하였습니다.", Snackbar.LENGTH_SHORT).show()
+                    Log.d(
+                        "0526sendVerifyCodeForChangePassword",
+                        "비밀번호 재설정 실패 ${result.exceptionOrNull()?.message}"
+                    )
                 }
             }
         }
