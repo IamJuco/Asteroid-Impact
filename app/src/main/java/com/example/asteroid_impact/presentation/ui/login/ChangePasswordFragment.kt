@@ -67,15 +67,16 @@ class ChangePasswordFragment : Fragment() {
         }
 
         binding.etEmail.addTextChangedListener(textWatcher)
-        binding.btnSendEmailVerifyCode.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            viewModel.sendVerifyCodeForChangePassword(email)
-        }
     }
 
     private fun setUpListener() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.btnSendEmailVerifyCode.setOnClickListener {
+            val email = binding.etEmail.text.toString()
+            viewModel.sendVerifyCodeForChangePassword(email)
         }
     }
 

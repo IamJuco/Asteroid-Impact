@@ -66,12 +66,6 @@ class RegisterEmailFragment : Fragment() {
         }
 
         binding.etEmail.addTextChangedListener(textWatcher)
-        binding.btnSendEmailVerifyCode.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val password = Constants.USER_TEMP_PASSWORD
-
-            viewModel.registerUserForEmailVerification(email, password)
-        }
     }
 
     private fun checkEmail(): Boolean {
@@ -90,6 +84,13 @@ class RegisterEmailFragment : Fragment() {
     private fun setupListener() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.btnSendEmailVerifyCode.setOnClickListener {
+            val email = binding.etEmail.text.toString()
+            val password = Constants.USER_TEMP_PASSWORD
+
+            viewModel.registerUserForEmailVerification(email, password)
         }
     }
 

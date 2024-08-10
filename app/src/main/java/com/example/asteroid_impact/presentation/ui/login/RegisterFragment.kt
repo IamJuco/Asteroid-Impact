@@ -63,11 +63,6 @@ class RegisterFragment : Fragment() {
         binding.etPassword.addTextChangedListener(textWatcher)
         binding.etPasswordCheck.addTextChangedListener(textWatcher)
         binding.etNickname.addTextChangedListener(textWatcher)
-
-        binding.btnRegisterSuccess.setOnClickListener {
-            val password = binding.etPassword.text.toString()
-            viewModel.registerUser(password)
-        }
     }
 
     private fun updateRegisterButtonState() {
@@ -118,6 +113,11 @@ class RegisterFragment : Fragment() {
     private fun setUpListener() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.btnRegisterSuccess.setOnClickListener {
+            val password = binding.etPassword.text.toString()
+            viewModel.registerUser(password)
         }
     }
 
