@@ -5,11 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentChangePasswordBinding
 
 class ChangePasswordFragment : Fragment() {
     private var _binding: FragmentChangePasswordBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: SharedViewModel by activityViewModels {
+        SharedViewModelFactory(FirebaseAuthRepositoryImpl())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
