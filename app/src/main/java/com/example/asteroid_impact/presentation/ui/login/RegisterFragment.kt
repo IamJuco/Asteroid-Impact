@@ -118,7 +118,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun setUpListener() {
-        binding.btnBack.setOnClickListener {
+        binding.ivBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 

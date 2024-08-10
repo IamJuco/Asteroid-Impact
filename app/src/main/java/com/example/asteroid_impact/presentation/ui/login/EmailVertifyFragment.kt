@@ -72,7 +72,7 @@ class EmailVertifyFragment : Fragment() {
     }
 
     private fun setUpListener() {
-        binding.btnBack.setOnClickListener {
+        binding.ivBack.setOnClickListener {
             viewModel.accountDelete()
             viewModel.clearRegisterResult()
             requireActivity().onBackPressedDispatcher.onBackPressed()

@@ -38,7 +38,7 @@ class ChangePasswordVerifyFragment : Fragment() {
                     .replace(R.id.frameContainer, LoginFragment())
                     .commit()
             }
-            btnBack.setOnClickListener {
+            ivBack.setOnClickListener {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.frameContainer, LoginFragment())
                     .commit()

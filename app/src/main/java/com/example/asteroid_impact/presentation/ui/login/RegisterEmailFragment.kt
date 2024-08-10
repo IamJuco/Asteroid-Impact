@@ -82,7 +82,7 @@ class RegisterEmailFragment : Fragment() {
     }
 
     private fun setupListener() {
-        binding.btnBack.setOnClickListener {
+        binding.ivBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
