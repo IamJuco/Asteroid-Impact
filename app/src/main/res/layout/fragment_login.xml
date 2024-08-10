@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_login"
+            android:id="@+id/et_email"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="100dp"
@@ -48,13 +48,14 @@
             android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_login" />
+            app:layout_constraintTop_toBottomOf="@id/et_email" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="32dp"
+            android:enabled="false"
             android:text="@string/login_login_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
