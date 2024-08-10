@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.shared
+package com.example.asteroid_impact.presentation.util
 
 import android.app.Activity
 import android.graphics.Rect

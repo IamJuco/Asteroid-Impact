@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.databinding.ActivityLoginBinding
-import com.example.asteroid_impact.presentation.shared.KeyboardCleaner
+import com.example.asteroid_impact.presentation.util.KeyboardCleaner
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
