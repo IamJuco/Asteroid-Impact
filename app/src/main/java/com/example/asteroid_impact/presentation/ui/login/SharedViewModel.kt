@@ -29,8 +29,8 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
     private val _loginResult = MutableLiveData<Result<FirebaseUser>?>()
     val loginResult: LiveData<Result<FirebaseUser>?> get() = _loginResult
 
-    private val _sendVerifyCodeForChangePassword = MutableLiveData<Result<Unit>>()
-    val sendVerifyCodeForChangePassword: LiveData<Result<Unit>> = _sendVerifyCodeForChangePassword
+    private val _sendVerifyCodeForChangePassword = MutableLiveData<Result<Unit>?>()
+    val sendVerifyCodeForChangePassword: LiveData<Result<Unit>?> = _sendVerifyCodeForChangePassword
 
     private var timerJob: Job? = null
 
@@ -86,6 +86,10 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
 
     fun clearLoginResult() {
         _loginResult.value = null
+    }
+
+    fun clearSendVerifyCodeForChangePassword() {
+        _sendVerifyCodeForChangePassword.value = null
     }
 
     fun checkEmailVerification(onResult: (Boolean) -> Unit) {

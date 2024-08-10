@@ -97,6 +97,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.tvChangePassword.setOnClickListener {
+            viewModel.clearSendVerifyCodeForChangePassword()
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.frameContainer, ChangePasswordFragment())
                 .addToBackStack(null)
