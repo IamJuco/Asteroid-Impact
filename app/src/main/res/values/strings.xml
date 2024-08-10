@@ -8,7 +8,7 @@
 
     <!-- Login -->
     <string name="login_title">Asteroid Impact</string>
-    <string name="login_login_hint">아이디를 입력해주세요.</string>
+    <string name="login_login_hint">이메일을 입력해주세요.</string>
     <string name="login_password_hint">비밀번호를 입력해주세요.</string>
     <string name="login_login_btn">로그인</string>
     <string name="login_find_password"><u>비밀번호를 잊으셨나요?</u></string>
