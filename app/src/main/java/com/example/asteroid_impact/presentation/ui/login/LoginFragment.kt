@@ -37,9 +37,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.clearLoginResult()
-        setUpObserver()
         setUpListener()
-        setUpTextWatchers()
+        setupIsEnabledButton()
+        setUpObserver()
         backPressedForExitApp()
     }
 
@@ -56,7 +56,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setUpTextWatchers() {
+    private fun setupIsEnabledButton() {
         val textWatcher = object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val isLoginCheck = loginCheck()

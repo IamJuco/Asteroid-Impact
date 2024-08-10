@@ -32,9 +32,9 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpCheckRegister()
-        setUpObserver()
         setUpListener()
+        setupIsEnabledButton()
+        setUpObserver()
     }
 
     private fun setUpObserver() {
@@ -50,7 +50,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun setUpCheckRegister() {
+    private fun setupIsEnabledButton() {
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 updateRegisterButtonState()

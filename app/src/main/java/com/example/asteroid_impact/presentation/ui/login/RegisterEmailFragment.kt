@@ -33,10 +33,9 @@ class RegisterEmailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpVerifyEmail()
-        setUpObserver()
         setupListener()
-
+        setupIsEnabledButton()
+        setUpObserver()
     }
 
     private fun setUpObserver() {
@@ -55,7 +54,7 @@ class RegisterEmailFragment : Fragment() {
         }
     }
 
-    private fun setUpVerifyEmail() {
+    private fun setupIsEnabledButton() {
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val isCheckEmail = checkEmail()
