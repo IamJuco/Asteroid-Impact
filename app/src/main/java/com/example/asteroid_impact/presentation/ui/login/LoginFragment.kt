@@ -60,6 +60,13 @@ class LoginFragment : Fragment() {
             val password = binding.etPassword.text.toString()
             viewModel.loginUser(email, password)
         }
+
+        binding.tvChangePassword.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.frameContainer, ChangePasswordFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     override fun onDestroyView() {
