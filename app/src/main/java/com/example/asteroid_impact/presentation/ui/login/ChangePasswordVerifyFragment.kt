@@ -5,18 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.asteroid_impact.R
-import com.example.asteroid_impact.databinding.FragmentFindPasswordBinding
+import com.example.asteroid_impact.databinding.FragmentChangePasswordVerifyBinding
 
-class FindPasswordFragment : Fragment() {
-    private var _binding: FragmentFindPasswordBinding? = null
+class ChangePasswordVerifyFragment : Fragment() {
+    private var _binding: FragmentChangePasswordVerifyBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFindPasswordBinding.inflate(inflater, container, false)
+        _binding = FragmentChangePasswordVerifyBinding.inflate(inflater, container, false)
         return binding.root
     }
 
