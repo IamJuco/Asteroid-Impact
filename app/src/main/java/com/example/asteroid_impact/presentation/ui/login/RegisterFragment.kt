@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentRegisterBinding
+import com.example.asteroid_impact.presentation.util.setPasswordToggle
 import com.google.android.material.snackbar.Snackbar
 import java.util.regex.Pattern
 
@@ -32,9 +33,15 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpPasswordVisibleToggle()
         setUpListener()
         setupIsEnabledButton()
         setUpObserver()
+    }
+
+    private fun setUpPasswordVisibleToggle() {
+        binding.ivPasswordVisibleToggle.setPasswordToggle(binding.etPassword)
+        binding.ivPasswordCheckVisibleToggle.setPasswordToggle(binding.etPasswordCheck)
     }
 
     private fun setUpObserver() {

@@ -32,42 +32,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-<!--        <androidx.appcompat.widget.AppCompatTextView-->
-<!--            android:id="@+id/tv_emailTitle"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="@string/register_email_title"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv_title" />-->
+        <!--        <androidx.appcompat.widget.AppCompatTextView-->
+        <!--            android:id="@+id/tv_emailTitle"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:text="@string/register_email_title"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_title" />-->
 
-<!--        <androidx.appcompat.widget.AppCompatEditText-->
-<!--            android:id="@+id/et_email"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:background="@drawable/bg_edit_register"-->
-<!--            android:hint="@string/register_email_hint"-->
-<!--            android:padding="12dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv_emailTitle" />-->
+        <!--        <androidx.appcompat.widget.AppCompatEditText-->
+        <!--            android:id="@+id/et_email"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:background="@drawable/bg_edit_register"-->
+        <!--            android:hint="@string/register_email_hint"-->
+        <!--            android:padding="12dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_emailTitle" />-->
 
-<!--        <androidx.appcompat.widget.AppCompatTextView-->
-<!--            android:id="@+id/tv_emailWarning"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:text="@string/register_email_warning"-->
-<!--            android:textColor="@color/red"-->
-<!--            android:visibility="invisible"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/et_email" />-->
+        <!--        <androidx.appcompat.widget.AppCompatTextView-->
+        <!--            android:id="@+id/tv_emailWarning"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:text="@string/register_email_warning"-->
+        <!--            android:textColor="@color/red"-->
+        <!--            android:visibility="invisible"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/et_email" />-->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_passwordTitle"
@@ -105,6 +105,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_passwordInformation" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_passwordVisibleToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_visibility_off"
+            app:layout_constraintBottom_toBottomOf="@id/et_password"
+            app:layout_constraintEnd_toEndOf="@id/et_password"
+            app:layout_constraintTop_toTopOf="@id/et_password" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_passwordWarning"
             android:layout_width="0dp"
@@ -129,6 +140,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_passwordWarning" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_passwordCheckVisibleToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_visibility_off"
+            app:layout_constraintBottom_toBottomOf="@id/et_passwordCheck"
+            app:layout_constraintEnd_toEndOf="@id/et_passwordCheck"
+            app:layout_constraintTop_toTopOf="@id/et_passwordCheck" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_passwordCheckWarning"
