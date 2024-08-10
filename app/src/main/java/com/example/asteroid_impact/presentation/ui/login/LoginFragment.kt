@@ -36,6 +36,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clearLoginResult()
         setUpObserver()
         setUpListener()
         setUpTextWatchers()
@@ -44,13 +45,13 @@ class LoginFragment : Fragment() {
 
     private fun setUpObserver() {
         viewModel.loginResult.observe(viewLifecycleOwner) { result ->
-            result.onSuccess {
+            result?.onSuccess {
                 Snackbar.make(binding.root, "로그인 성공", Snackbar.LENGTH_SHORT).show()
                 requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
                 requireActivity().finish()
-            }.onFailure {
+            }?.onFailure {
                 Log.d("0526LoginSuccessOrFailure", "로그인 실패 ${it.message}")
-                Snackbar.make(binding.root, "로그인에 실패했습니다. 이메일또는 비밀번호를 다시 확인해주세요.}", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "로그인에 실패했습니다. 이메일또는 비밀번호를 다시 확인해주세요.", Snackbar.LENGTH_SHORT).show()
             }
         }
     }
