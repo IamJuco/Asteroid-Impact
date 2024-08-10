@@ -58,7 +58,8 @@ class RegisterEmailFragment : Fragment() {
     private fun setUpVerifyEmail() {
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                updateRegisterButtonState()
+                val isCheckEmail = checkEmail()
+                binding.btnSendEmailVerifyCode.isEnabled = isCheckEmail
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -72,11 +73,6 @@ class RegisterEmailFragment : Fragment() {
 
             viewModel.registerUserForEmailVerification(email, password)
         }
-    }
-
-    private fun updateRegisterButtonState() {
-        val isEmailValid = checkEmail()
-        binding.btnSendEmailVerifyCode.isEnabled = isEmailValid
     }
 
     private fun checkEmail(): Boolean {

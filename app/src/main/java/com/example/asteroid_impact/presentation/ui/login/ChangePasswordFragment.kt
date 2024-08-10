@@ -1,15 +1,19 @@
 package com.example.asteroid_impact.presentation.ui.login
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.asteroid_impact.Constants
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentChangePasswordBinding
 import com.google.android.material.snackbar.Snackbar
+import java.util.regex.Pattern
 
 class ChangePasswordFragment : Fragment() {
     private var _binding: FragmentChangePasswordBinding? = null
@@ -29,6 +33,7 @@ class ChangePasswordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpVerifyEmail()
         setUpObserver()
         setUpListener()
     }
@@ -50,19 +55,35 @@ class ChangePasswordFragment : Fragment() {
         }
     }
 
-    private fun setUpListener() {
-        binding.btnSendEmailVerifyCode.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            if (email.isNotEmpty()) {
-                viewModel.sendVerifyCodeForChangePassword(email)
-            } else {
-                Snackbar.make(binding.root, "이메일을 입력해주세요.", Snackbar.LENGTH_SHORT).show()
+    private fun setUpVerifyEmail() {
+        val textWatcher = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val isCheckEmail = checkEmail()
+                binding.btnSendEmailVerifyCode.isEnabled = isCheckEmail
             }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
 
+        binding.etEmail.addTextChangedListener(textWatcher)
+        binding.btnSendEmailVerifyCode.setOnClickListener {
+            val email = binding.etEmail.text.toString()
+            viewModel.sendVerifyCodeForChangePassword(email)
+        }
+    }
+
+    private fun setUpListener() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+    }
+
+    private fun checkEmail(): Boolean {
+        val email = binding.etEmail.text.toString()
+        val emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+        val emailPatternCheck = Pattern.matches(emailPattern, email)
+        return !(email.isNotEmpty() && !emailPatternCheck)
     }
 
     override fun onDestroyView() {

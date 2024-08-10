@@ -59,8 +59,8 @@ class LoginFragment : Fragment() {
     private fun setUpTextWatchers() {
         val textWatcher = object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val loginCheck = loginCheck()
-                binding.btnLogin.isEnabled = loginCheck
+                val isLoginCheck = loginCheck()
+                binding.btnLogin.isEnabled = isLoginCheck
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
