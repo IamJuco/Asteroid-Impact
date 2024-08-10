@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
@@ -33,6 +34,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpObserver()
         setUpListener()
+        backPressedForExitApp()
     }
 
     private fun setUpObserver() {
@@ -72,6 +74,15 @@ class LoginFragment : Fragment() {
             requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
             requireActivity().finish()
         }
+    }
+
+    private fun backPressedForExitApp() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+               val dialog = BackPressedExitAppDialog()
+                dialog.show(parentFragmentManager, "BackPressedExitAppDialog")
+            }
+        })
     }
 
     override fun onDestroyView() {
