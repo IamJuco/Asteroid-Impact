@@ -42,12 +42,16 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpPasswordVisibleToggle()
-        viewModel.clearLoginResult()
-        setUpListener()
-        setupIsEnabledButton()
-        setUpObserver()
-        backPressedForExitApp()
+        if (viewModel.checkUserLoggedIn()) {
+            moveToMainActivity()
+        } else {
+            setUpPasswordVisibleToggle()
+            viewModel.clearLoginResult()
+            setUpListener()
+            setupIsEnabledButton()
+            setUpObserver()
+            backPressedForExitApp()
+        }
     }
 
     private fun setUpPasswordVisibleToggle() {
@@ -58,8 +62,7 @@ class LoginFragment : Fragment() {
         viewModel.loginResult.observe(viewLifecycleOwner) { result ->
             result?.onSuccess {
                 Snackbar.make(binding.root, R.string.login_fragment_login_success, Snackbar.LENGTH_SHORT).show()
-                requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
-                requireActivity().finish()
+                moveToMainActivity()
             }?.onFailure {
                 Log.d("0526LoginSuccessOrFailure", "로그인 실패 ${it.message}")
                 Snackbar.make(binding.root, R.string.login_fragment_login_fail, Snackbar.LENGTH_SHORT).show()
@@ -119,6 +122,11 @@ class LoginFragment : Fragment() {
             requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
             requireActivity().finish()
         }
+    }
+
+    private fun moveToMainActivity() {
+        requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
+        requireActivity().finish()
     }
 
     private fun backPressedForExitApp() {

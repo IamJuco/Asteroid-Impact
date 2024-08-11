@@ -86,4 +86,8 @@ class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
     override fun signOut() {
         firebaseAuth.signOut()
     }
+
+    override fun isCheckUserLoggedIn(): Boolean {
+        return firebaseAuth.currentUser != null
+    }
 }

@@ -34,6 +34,10 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
 
     private var timerJob: Job? = null
 
+    fun checkUserLoggedIn(): Boolean {
+        return authRepository.isCheckUserLoggedIn()
+    }
+
     fun loginUser(email: String, password: String) {
         viewModelScope.launch{
             val result = authRepository.signInWithEmail(email, password)

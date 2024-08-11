@@ -11,4 +11,5 @@ interface FirebaseAuthRepository {
     suspend fun changePassword(email: String): Result<Unit>
     fun getCurrentUser(): FirebaseUser?
     fun signOut()
+    fun isCheckUserLoggedIn(): Boolean
 }
