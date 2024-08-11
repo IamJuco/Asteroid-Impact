@@ -162,7 +162,6 @@ class SharedViewModel(private val authRepository: FirebaseAuthRepository) : View
         }
     }
 
-    //TODO 앱 강제종료시 미리 회원가입된 정보를 삭제시켜야함
     fun tempAccountDeleteForDoNotEmailVerification() {
         val email = _email.value
         val password = Constants.USER_TEMP_PASSWORD
