@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.ui.login
+package com.example.asteroid_impact.presentation.ui.auth.changepassword
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.databinding.FragmentChangePasswordVerifyBinding
+import com.example.asteroid_impact.presentation.ui.auth.login.LoginFragment
 
 class ChangePasswordVerifyFragment : Fragment() {
     private var _binding: FragmentChangePasswordVerifyBinding? = null

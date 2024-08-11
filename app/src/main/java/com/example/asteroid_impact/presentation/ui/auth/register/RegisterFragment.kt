@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.ui.login
+package com.example.asteroid_impact.presentation.ui.auth.register
 
 import android.os.Bundle
 import android.text.Editable
@@ -12,6 +12,9 @@ import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentRegisterBinding
+import com.example.asteroid_impact.presentation.ui.auth.login.LoginFragment
+import com.example.asteroid_impact.presentation.ui.auth.SharedViewModel
+import com.example.asteroid_impact.presentation.ui.auth.SharedViewModelFactory
 import com.example.asteroid_impact.presentation.util.setPasswordToggle
 import com.google.android.material.snackbar.Snackbar
 import java.util.regex.Pattern

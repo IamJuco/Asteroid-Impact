@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.ui.login
+package com.example.asteroid_impact.presentation.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog

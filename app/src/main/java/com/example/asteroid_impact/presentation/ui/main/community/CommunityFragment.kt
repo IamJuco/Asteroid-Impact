@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.ui.community
+package com.example.asteroid_impact.presentation.ui.main.community
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

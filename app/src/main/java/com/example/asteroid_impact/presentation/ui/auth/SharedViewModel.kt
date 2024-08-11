@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.ui.login
+package com.example.asteroid_impact.presentation.ui.auth
 
 import android.util.Log
 import androidx.lifecycle.LiveData

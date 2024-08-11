@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.ui.login
+package com.example.asteroid_impact.presentation.ui.auth
 
 import android.os.Bundle
 import android.view.MotionEvent
@@ -8,11 +8,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.example.asteroid_impact.R
-import com.example.asteroid_impact.databinding.ActivityLoginBinding
+import com.example.asteroid_impact.databinding.ActivityAuthBinding
+import com.example.asteroid_impact.presentation.ui.auth.login.LoginFragment
 import com.example.asteroid_impact.presentation.util.KeyboardCleaner
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+class AuthActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAuthBinding
 
     private val keyboardCleaner: KeyboardCleaner by lazy {
         KeyboardCleaner(this)
@@ -20,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityAuthBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
 

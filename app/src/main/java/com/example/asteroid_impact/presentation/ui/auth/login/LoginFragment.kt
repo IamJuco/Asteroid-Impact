@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.ui.login
+package com.example.asteroid_impact.presentation.ui.auth.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,11 @@ import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.R
 import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentLoginBinding
+import com.example.asteroid_impact.presentation.dialog.BackPressedExitAppDialog
+import com.example.asteroid_impact.presentation.ui.auth.SharedViewModel
+import com.example.asteroid_impact.presentation.ui.auth.SharedViewModelFactory
+import com.example.asteroid_impact.presentation.ui.auth.changepassword.ChangePasswordFragment
+import com.example.asteroid_impact.presentation.ui.auth.register.RegisterEmailFragment
 import com.example.asteroid_impact.presentation.ui.main.MainActivity
 import com.example.asteroid_impact.presentation.util.setPasswordToggle
 import com.google.android.material.snackbar.Snackbar
