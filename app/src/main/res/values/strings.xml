@@ -67,4 +67,6 @@
     <string name="exit_app_message">정말 종료하시겠습니까?</string>
     <string name="exit_app_positive">네</string>
     <string name="exit_app_negative">아니요</string>
+
+    <string name="account_delete_text_null">비밀번호를 입력해주세요.</string>
 </resources>

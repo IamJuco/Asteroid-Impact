@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.example.asteroid_impact.R
 
-class BackPressedExitAppDialog: DialogFragment() {
+class BackPressedExitAppDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
             .setTitle(R.string.exit_app_title)
