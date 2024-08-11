@@ -6,14 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentMyPageBinding
 import com.example.asteroid_impact.presentation.ui.auth.AuthActivity
-import com.example.asteroid_impact.presentation.ui.main.MainActivity
-import com.google.firebase.auth.FirebaseAuth
 
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: MyPageViewModel by viewModels {
+        MyPageViewModelFactory(FirebaseAuthRepositoryImpl())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +30,7 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+            viewModel.signOut()
             requireActivity().startActivity(Intent(requireActivity(), AuthActivity::class.java))
             requireActivity().finish()
         }
