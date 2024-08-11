@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/nav_home"
+        android:icon="@drawable/ic_home"
+        />
+
+    <item
+        android:id="@+id/communityFragment"
+        android:title="@string/nav_community"
+        android:icon="@drawable/ic_community"
+        />
+
+    <item
+        android:id="@+id/myPageFragment"
+        android:title="@string/nav_my_page"
+        android:icon="@drawable/ic_mypage"
+        />
+
+</menu>

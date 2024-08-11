@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "nbc_AssignmentTest"
+rootProject.name = "asteroid_impact"
 include(":app")
  

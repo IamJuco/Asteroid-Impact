@@ -1,14 +1,15 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.nbc_assignmenttest"
+    namespace = "com.example.asteroid_impact"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.nbc_assignmenttest"
+        applicationId = "com.example.asteroid_impact"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -53,6 +54,13 @@ dependencies {
     // Navigation
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation(libs.play.services.auth)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
