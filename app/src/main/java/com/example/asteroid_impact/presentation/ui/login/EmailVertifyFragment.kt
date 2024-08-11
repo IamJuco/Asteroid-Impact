@@ -39,7 +39,7 @@ class EmailVertifyFragment : Fragment() {
         binding.btnEmailVertify.setOnClickListener {
             viewModel.checkEmailVerification { isVerified ->
                 if (isVerified) {
-                    Snackbar.make(binding.root, "이메일 인증 완료", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, R.string.email_fragment_success, Snackbar.LENGTH_SHORT).show()
 
                     val email = viewModel.email.value
                     val password = Constants.USER_TEMP_PASSWORD
@@ -55,16 +55,12 @@ class EmailVertifyFragment : Fragment() {
                                 .replace(R.id.frameContainer, RegisterFragment())
                                 .commit()
                         }.onFailure {
-                            Snackbar.make(
-                                binding.root,
-                                "계정 삭제 실패: ${it.message}",
-                                Snackbar.LENGTH_SHORT
-                            ).show()
+                            Log.d("checkEmailVerify", "\"계정 삭제 실패: ${it.message}\"")
                         }
                     }
 
                 } else {
-                    Snackbar.make(binding.root, "이메일 인증이 아직 완료되지 않았습니다.", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.root, R.string.email_fragment_fail, Snackbar.LENGTH_SHORT)
                         .show()
                 }
             }

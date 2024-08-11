@@ -14,10 +14,6 @@ class ChangePasswordVerifyFragment : Fragment() {
     private var _binding: FragmentChangePasswordVerifyBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SharedViewModel by activityViewModels {
-        SharedViewModelFactory(FirebaseAuthRepositoryImpl())
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

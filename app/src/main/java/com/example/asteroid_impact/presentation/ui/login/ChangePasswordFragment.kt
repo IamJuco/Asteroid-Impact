@@ -43,13 +43,13 @@ class ChangePasswordFragment : Fragment() {
         viewModel.sendVerifyCodeForChangePassword.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 if (result.isSuccess) {
-                    Snackbar.make(binding.root, "비밀번호 재설정 이메일이 발송되었습니다.", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.root, R.string.change_password_fragment_success, Snackbar.LENGTH_SHORT)
                         .show()
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.frameContainer, ChangePasswordVerifyFragment())
                         .commit()
                 } else {
-                    Snackbar.make(binding.root, "비밀번호 재설정에 실패하였습니다.", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, R.string.change_password_fragment_fail, Snackbar.LENGTH_SHORT).show()
                     Log.d(
                         "0526sendVerifyCodeForChangePassword",
                         "비밀번호 재설정 실패 ${result.exceptionOrNull()?.message}"

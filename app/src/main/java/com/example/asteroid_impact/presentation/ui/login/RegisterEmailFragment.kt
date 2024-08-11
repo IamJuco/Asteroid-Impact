@@ -3,6 +3,7 @@ package com.example.asteroid_impact.presentation.ui.login
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,15 +42,17 @@ class RegisterEmailFragment : Fragment() {
     private fun setUpObserver() {
         viewModel.registerResultForEmailVerification.observe(viewLifecycleOwner) { result ->
             result?.onSuccess {
-                Snackbar.make(binding.root, "임시 회원가입 성공", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, R.string.register_email_temp_register_success, Snackbar.LENGTH_SHORT).show()
+                Log.d("0526EmailTempRegister", "임시 회원가입 성공")
                 viewModel.sendEmailVerification()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.frameContainer, EmailVertifyFragment())
                     .commit()
 
             }?.onFailure {
-                Snackbar.make(binding.root, "임시 회원가입 실패: ${it.message}", Snackbar.LENGTH_SHORT)
+                Snackbar.make(binding.root, R.string.register_email_temp_register_fail, Snackbar.LENGTH_SHORT)
                     .show()
+                Log.d("0526EmailTempRegister", "임시 회원가입 실패: ${it.message}")
             }
         }
     }

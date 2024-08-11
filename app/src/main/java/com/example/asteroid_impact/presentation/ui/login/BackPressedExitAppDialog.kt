@@ -4,17 +4,18 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import com.example.asteroid_impact.R
 
 class BackPressedExitAppDialog: DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
-            .setTitle("앱 종료")
-            .setMessage("정말 종료하시겠습니까?")
-            .setPositiveButton("네") { _, _ ->
+            .setTitle(R.string.exit_app_title)
+            .setMessage(R.string.exit_app_message)
+            .setPositiveButton(R.string.exit_app_positive) { _, _ ->
                 requireActivity().finish()
             }
-            .setNegativeButton("아니요") { dialog, _ ->
+            .setNegativeButton(R.string.exit_app_negative) { dialog, _ ->
                 dialog.dismiss()
             }
             .create()
