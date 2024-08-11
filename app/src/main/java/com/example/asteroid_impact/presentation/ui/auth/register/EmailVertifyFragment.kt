@@ -47,7 +47,7 @@ class EmailVertifyFragment : Fragment() {
                     val password = Constants.USER_TEMP_PASSWORD
 
                     //TODO email null check 해봐야할듯
-                    viewModel.deleteAccountAndReAuthentication(
+                    viewModel.tempDeleteAccountAndReAuthentication(
                         email.orEmpty(),
                         password
                     ) { result ->
@@ -71,7 +71,7 @@ class EmailVertifyFragment : Fragment() {
 
     private fun setUpListener() {
         binding.ivBack.setOnClickListener {
-            viewModel.accountDelete()
+            viewModel.tempAccountDeleteForDoNotEmailVerification()
             viewModel.clearRegisterResult()
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
