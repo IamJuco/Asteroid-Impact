@@ -55,7 +55,7 @@ class EmailVertifyFragment : Fragment() {
                                 .replace(R.id.frameContainer, RegisterFragment())
                                 .commit()
                         }.onFailure {
-                            Log.d("checkEmailVerify", "\"계정 삭제 실패: ${it.message}\"")
+                            Log.d("0526checkEmailVerify", "\"계정 삭제 실패: ${it.message}\"")
                         }
                     }
 

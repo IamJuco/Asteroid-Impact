@@ -33,7 +33,6 @@
     <string name="register_success">회원가입이 완료 되었습니다! 다시 로그인 해 주세요!</string>
     <string name="register_fail">알 수 없는 오류로 회원가입에 실패 하였습니다.</string>
 
-
     <!-- Register Email -->
     <string name="register_email_title">이메일로 회원가입</string>
     <string name="register_email_subtitle">이메일</string>
