@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -41,6 +42,10 @@ android {
 }
 
 dependencies {
+
+    // Hilt
+    implementation (libs.hilt.android)
+    ksp (libs.hilt.compiler)
 
     // Retrofit2
     implementation (libs.retrofit)
