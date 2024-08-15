@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MyPageViewModel @Inject constructor(val authRepository: FirebaseAuthRepository): ViewModel() {
+class MyPageViewModel @Inject constructor(val authRepository: FirebaseAuthRepository) : ViewModel() {
 
     private val _accountDeleteResult = MutableLiveData<Result<Unit>?>()
     val accountDeleteResult: LiveData<Result<Unit>?> get() = _accountDeleteResult

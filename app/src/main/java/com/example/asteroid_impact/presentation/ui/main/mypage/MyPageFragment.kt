@@ -12,7 +12,9 @@ import com.example.asteroid_impact.databinding.FragmentMyPageBinding
 import com.example.asteroid_impact.presentation.dialog.AccountDeleteDialog
 import com.example.asteroid_impact.presentation.ui.auth.AuthActivity
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyPageFragment : Fragment(), AccountDeleteDialog.AccountDeleteListener {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
