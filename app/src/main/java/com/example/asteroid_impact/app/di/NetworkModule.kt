@@ -1,27 +1,41 @@
-package com.example.asteroid_impact.data.remote.retrofit
+package com.example.asteroid_impact.app.di
 
 import com.example.asteroid_impact.Constants
+import com.example.asteroid_impact.data.remote.retrofit.NasaApiService
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
-object RetrofitClient {
-    private val retrofit by lazy {
-        Retrofit.Builder()
+@Module
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
             .baseUrl(Constants.NASA_BASE_URL)
-            .client(createOkHttpClient())
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val getNasaApiService: NasaApiService by lazy {
-        retrofit.create(NasaApiService::class.java)
+    @Provides
+    @Singleton
+    fun provideNasaApiService(retrofit: Retrofit): NasaApiService {
+        return retrofit.create(NasaApiService::class.java)
     }
 
-
-    private fun createOkHttpClient(): OkHttpClient {
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
