@@ -12,11 +12,9 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.R
-import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentLoginBinding
 import com.example.asteroid_impact.presentation.dialog.BackPressedExitAppDialog
 import com.example.asteroid_impact.presentation.ui.auth.SharedViewModel
-import com.example.asteroid_impact.presentation.ui.auth.SharedViewModelFactory
 import com.example.asteroid_impact.presentation.ui.auth.changepassword.ChangePasswordFragment
 import com.example.asteroid_impact.presentation.ui.auth.register.RegisterEmailFragment
 import com.example.asteroid_impact.presentation.ui.main.MainActivity
@@ -28,9 +26,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SharedViewModel by activityViewModels {
-        SharedViewModelFactory(FirebaseAuthRepositoryImpl())
-    }
+    private val viewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

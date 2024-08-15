@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -42,6 +44,10 @@ android {
 
 dependencies {
 
+    // Hilt
+    implementation (libs.hilt.android)
+    ksp (libs.hilt.compiler)
+
     // Retrofit2
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
@@ -57,9 +63,7 @@ dependencies {
 
     // Firebase
     implementation(platform(libs.firebase.bom))
-    implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore")
     implementation(libs.play.services.auth)
 
     implementation(libs.androidx.core.ktx)

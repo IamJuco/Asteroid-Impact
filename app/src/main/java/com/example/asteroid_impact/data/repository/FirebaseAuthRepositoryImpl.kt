@@ -1,15 +1,16 @@
 package com.example.asteroid_impact.data.repository
 
 import android.util.Log
-import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import com.example.asteroid_impact.domain.repository.FirebaseAuthRepository
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class FirebaseAuthRepositoryImpl : FirebaseAuthRepository {
+class FirebaseAuthRepositoryImpl @Inject constructor() : FirebaseAuthRepository {
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }

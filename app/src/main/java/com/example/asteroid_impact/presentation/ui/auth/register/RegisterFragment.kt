@@ -10,11 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.R
-import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentRegisterBinding
 import com.example.asteroid_impact.presentation.ui.auth.login.LoginFragment
 import com.example.asteroid_impact.presentation.ui.auth.SharedViewModel
-import com.example.asteroid_impact.presentation.ui.auth.SharedViewModelFactory
 import com.example.asteroid_impact.presentation.util.setPasswordToggle
 import com.google.android.material.snackbar.Snackbar
 import java.util.regex.Pattern
@@ -23,9 +21,7 @@ class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SharedViewModel by activityViewModels {
-        SharedViewModelFactory(FirebaseAuthRepositoryImpl())
-    }
+    private val viewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

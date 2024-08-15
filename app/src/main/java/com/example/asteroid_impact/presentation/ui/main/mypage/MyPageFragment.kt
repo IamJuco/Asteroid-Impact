@@ -8,19 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentMyPageBinding
 import com.example.asteroid_impact.presentation.dialog.AccountDeleteDialog
 import com.example.asteroid_impact.presentation.ui.auth.AuthActivity
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyPageFragment : Fragment(), AccountDeleteDialog.AccountDeleteListener {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MyPageViewModel by viewModels {
-        MyPageViewModelFactory(FirebaseAuthRepositoryImpl())
-    }
+    private val viewModel: MyPageViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
