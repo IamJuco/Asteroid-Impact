@@ -1,4 +1,4 @@
-package com.example.asteroid_impact.presentation.repository
+package com.example.asteroid_impact.domain.repository
 
 import com.google.firebase.auth.FirebaseUser
 

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.Constants
-import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import com.example.asteroid_impact.domain.repository.FirebaseAuthRepository
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job

@@ -1,7 +1,7 @@
 package com.example.asteroid_impact.data.repository
 
 import android.util.Log
-import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import com.example.asteroid_impact.domain.repository.FirebaseAuthRepository
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

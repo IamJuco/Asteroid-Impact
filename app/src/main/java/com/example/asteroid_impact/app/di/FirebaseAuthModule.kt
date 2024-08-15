@@ -1,7 +1,7 @@
 package com.example.asteroid_impact.app.di
 
 import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
-import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import com.example.asteroid_impact.domain.repository.FirebaseAuthRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
