@@ -18,9 +18,7 @@ class MyPageFragment : Fragment(), AccountDeleteDialog.AccountDeleteListener {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MyPageViewModel by viewModels {
-        MyPageViewModelFactory(FirebaseAuthRepositoryImpl())
-    }
+    private val viewModel: MyPageViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
