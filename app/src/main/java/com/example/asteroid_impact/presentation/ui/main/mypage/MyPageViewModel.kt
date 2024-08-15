@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyPageViewModel(val authRepository: FirebaseAuthRepository): ViewModel() {
+@HiltViewModel
+class MyPageViewModel @Inject constructor(val authRepository: FirebaseAuthRepository): ViewModel() {
 
     private val _accountDeleteResult = MutableLiveData<Result<Unit>?>()
     val accountDeleteResult: LiveData<Result<Unit>?> get() = _accountDeleteResult
