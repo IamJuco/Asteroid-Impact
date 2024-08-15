@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.Constants
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
@@ -197,17 +196,5 @@ class SharedViewModel @Inject constructor(private val authRepository: FirebaseAu
             val result = authRepository.changePassword(email)
             _sendVerifyCodeForChangePassword.value = result
         }
-    }
-}
-
-class SharedViewModelFactory(
-    private val authRepository: FirebaseAuthRepository
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SharedViewModel::class.java)) {
-            return SharedViewModel(authRepository) as T
-        }
-        throw IllegalArgumentException("뷰모델 클래스가 없음")
     }
 }

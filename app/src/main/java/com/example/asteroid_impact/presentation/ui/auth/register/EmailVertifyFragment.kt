@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.asteroid_impact.Constants
 import com.example.asteroid_impact.R
-import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentEmailVertifyBinding
 import com.example.asteroid_impact.presentation.ui.auth.SharedViewModel
-import com.example.asteroid_impact.presentation.ui.auth.SharedViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 class EmailVertifyFragment : Fragment() {

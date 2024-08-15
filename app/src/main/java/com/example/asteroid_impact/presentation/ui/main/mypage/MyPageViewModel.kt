@@ -3,7 +3,6 @@ package com.example.asteroid_impact.presentation.ui.main.mypage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,17 +36,5 @@ class MyPageViewModel @Inject constructor(val authRepository: FirebaseAuthReposi
                 _accountDeleteResult.value = reAuthResult
             }
         }
-    }
-}
-
-class MyPageViewModelFactory(
-    private val authRepository: FirebaseAuthRepository
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MyPageViewModel::class.java)) {
-            return MyPageViewModel(authRepository) as T
-        }
-        throw IllegalArgumentException("뷰모델 클래스가 없음")
     }
 }

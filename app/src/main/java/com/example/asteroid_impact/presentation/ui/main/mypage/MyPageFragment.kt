@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.asteroid_impact.data.repository.FirebaseAuthRepositoryImpl
 import com.example.asteroid_impact.databinding.FragmentMyPageBinding
 import com.example.asteroid_impact.presentation.dialog.AccountDeleteDialog
 import com.example.asteroid_impact.presentation.ui.auth.AuthActivity
