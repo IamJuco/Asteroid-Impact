@@ -9,12 +9,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.asteroid_impact.Constants
 import com.example.asteroid_impact.presentation.repository.FirebaseAuthRepository
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class SharedViewModel(private val authRepository: FirebaseAuthRepository) : ViewModel() {
+@HiltViewModel
+class SharedViewModel @Inject constructor(private val authRepository: FirebaseAuthRepository) : ViewModel() {
 
     private val _registerResult = MutableLiveData<Result<Unit>>()
     val registerResult: LiveData<Result<Unit>?> = _registerResult

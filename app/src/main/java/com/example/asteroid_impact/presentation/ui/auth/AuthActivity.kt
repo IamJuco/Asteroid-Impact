@@ -11,7 +11,9 @@ import com.example.asteroid_impact.R
 import com.example.asteroid_impact.databinding.ActivityAuthBinding
 import com.example.asteroid_impact.presentation.ui.auth.login.LoginFragment
 import com.example.asteroid_impact.presentation.util.KeyboardCleaner
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
 
